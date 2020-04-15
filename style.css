@@ -1,0 +1,59 @@
+html {
+    background-color: darkgray;
+}
+body {
+    margin: 0px
+}
+
+#title {
+    width: 80%;
+    height: 20%;
+    background-color: lightgrey;
+    text-align: center;
+    font-size: 17.5vh;
+}
+
+#login {
+    float: right;
+    background-color: lightgray;
+    width: 20%;
+    height: 20%;
+    /*text-align: left;*/
+}
+
+#content {
+    width: 60%;
+    background-color: white;
+    margin-left: 19%;
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+}
+#submit {
+    width: 10vw;
+}
+
+#loginform {
+    float: right;
+}
+
+input {
+    width: 10vw;
+}
+
+#li_button {
+    width: 100%;
+    height: 33%;
+    height: calc(100%/3);
+}
+
+
+
+@media (orientation: portrait) {
+    #title {
+        height: 10%;
+        font-size: 10vw;
+    }
+    #login {
+        height: 10%
+    }
+}
