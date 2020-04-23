@@ -6,7 +6,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 }
 
 function show_users() {
-    require('../edit/zugriff.inc.php');
+    require_once("/etc/mysql_zugriff/zugriff.inc.php");
     echo <<<TABLE
     <table border=1 style="width: 100%;">
     <tr>

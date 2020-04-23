@@ -3,7 +3,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     session_start();
     echo "<button onclick=\"window.location.replace('..')\">Home</button><button onclick=\"window.location.replace('.')\">Backend</button>";
 }
-require_once('../edit/zugriff.inc.php');
+require_once("/etc/mysql_zugriff/zugriff.inc.php");
 if(isset($_SESSION['perms']) and $_SESSION['perms'] == 3) {
     if(empty($_POST['user']) or empty($_POST['pwd1']) or empty($_POST['pwd2']) or !isset($_POST['perms'])) {
 ?>
