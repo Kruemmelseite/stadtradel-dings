@@ -56,7 +56,7 @@ function show_form($id) {
 }
 
 function handle_request() {
-    require('../edit/zugriff.inc.php');
+    require_once("/etc/mysql_zugriff/zugriff.inc.php");
     if($_SERVER["REQUEST_METHOD"]==="GET") {//bei GET
         echo "<button onclick=\"window.location.replace('..')\">Home</button><button onclick=\"window.location.replace('.')\">Backend</button>";
         if(isset($_GET['id'])) {
