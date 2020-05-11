@@ -37,18 +37,14 @@ function show_form($id) {
         Passwort erneut eingeben:<br>
         <input type="password" name="pwd2"></input><br>
         Rechte:<br>
-        <fieldset>
-            <input type="radio" id="0" name="perms" value="0">
-            <label for="0">Keine Rechte</label>
-            <input type="radio" id="1" name="perms" value="1">
+            <input type="checkbox" id="1" name="perms1" value="1">
             <label for="1">Hinzufügen/bearbeiten/löschen von eigenen</label>
-            <input type="radio" id="2" name="perms" value="2">
+            <input type="checkbox" id="2" name="perms2" value="2">
             <label for="2">Bearbeiten/Löschen von anderen</label>
-            <input type="radio" id="3" name="perms" value="3">
+            <input type="checkbox" id="3" name="perms3" value="4">
             <label for="3">Benutzer verwalten</label>
-            <input type="radio" id="4" name="perms" value="4">
-            <label for="4">nur Benutzer verwalten</label>
-        </fieldset>
+            <input type="checkbox" id="4" name="perms4" value="8">
+            <label for="4">Bilder hochladen</label>
         <input type="hidden" value="$id" name="id"></input>
         <input type="submit" value="Edit"></input>
     </form>
@@ -83,8 +79,8 @@ function handle_request() {
                 mysqli_query($db, "UPDATE users SET pwd='$pwd1' WHERE id=$id");
                 echo "UPDATE users SET pwd='$pwd1' WHERE id=$id<br>";
             }
-            if(isset($_POST['perms'])) {
-                $perms=mysqli_real_escape_string($db, $_POST['perms']);
+            if(isset($_POST['perms1']) or isset($_POST['perms2']) or isset($_POST['perms3'])) {
+                $perms = intval($_POST["perms1"]) | intval($_POST["perms2"]) | intval($_POST["perms3"]) | intval($_POST["perms4"]);
                 mysqli_query($db, "UPDATE users SET perms='$perms' WHERE id=$id");
                 echo "UPDATE users SET perms='$perms' WHERE id=$id";
             }
@@ -94,7 +90,7 @@ function handle_request() {
 }
 
 
-if(isset($_SESSION['perms']) and $_SESSION['perms'] > 2) {
+if(isset($_SESSION['perms']) and $_SESSION['perms'] & 4) {
     handle_request();
 }
 ?>

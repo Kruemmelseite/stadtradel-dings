@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['login']) and $_SESSION['perms'] > 2) {
+if(isset($_SESSION['login']) and $_SESSION['perms'] & 4) {
 ?>
 <button onclick="window.location.replace('..')">Home</button>
 <?php
