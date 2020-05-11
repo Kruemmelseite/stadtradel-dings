@@ -4,7 +4,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     echo "<button onclick=\"window.location.replace('..')\">Home</button><button onclick=\"window.location.replace('.')\">Backend</button>";
 }
 require_once("/etc/mysql_zugriff/zugriff.inc.php");
-if(isset($_SESSION['perms']) and $_SESSION['perms'] == 3) {
+if(isset($_SESSION['perms']) and $_SESSION['perms'] & 4) {
     if(empty($_POST['user']) or empty($_POST['pwd1']) or empty($_POST['pwd2']) or !isset($_POST['perms'])) {
 ?>
 <form action="register.php" method="post">
@@ -15,18 +15,14 @@ if(isset($_SESSION['perms']) and $_SESSION['perms'] == 3) {
     Passwort erneut eingeben:<br>
     <input type="password" name="pwd2"></input><br>
     Rechte:<br>
-    <fieldset>
-        <input type="radio" id="0" name="perms" value="0">
-        <label for="0">Keine Rechte</label>
-        <input type="radio" id="1" name="perms" value="1">
+        <input type="checkbox" id="1" name="perms1" value="1">
         <label for="1">Hinzufügen/bearbeiten/löschen von eigenen</label>
-        <input type="radio" id="2" name="perms" value="2">
+        <input type="checkbox" id="2" name="perms2" value="2">
         <label for="2">Bearbeiten/Löschen von anderen</label>
-        <input type="radio" id="3" name="perms" value="3">
+        <input type="checkbox" id="3" name="perms3" value="4">
         <label for="3">Benutzer verwalten</label>
-        <input type="radio" id="4" name="perms" value="3">
-        <label for="4">nur Benutzer verwalten</label>
-    </fieldset>
+        <input type="checkbox" id="4" name="perms4" value="8">
+        <label for="4">Bilder hochladen</label>
     <input type="submit" value="Hinzufügen"></input>
 </form>
 
@@ -35,7 +31,9 @@ if(isset($_SESSION['perms']) and $_SESSION['perms'] == 3) {
         $username=mysqli_real_escape_string($db, $_POST['user']);
         $pwd1=md5($_POST['pwd1']);
         $pwd2=md5($_POST['pwd2']);
-        $perms=mysqli_real_escape_string($db, $_POST['perms']);
+
+        $perms = intval($_POST["perms1"]) | intval($_POST["perms2"]) | intval($_POST["perms3"]) | intval($_POST["perms4"]);
+
         if($pwd1 != $pwd2){
             echo "<script>alert('The passwords don't match')";
             header("Location: register.php");
