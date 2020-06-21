@@ -2,10 +2,11 @@
 require_once("/etc/mysql_zugriff/zugriff.inc.php");
 session_start();
 if(isset($_SESSION['perms']) and $_SESSION['perms'] > 0 and $_SESSION['perms'] !=4) {
-    if(!empty($_POST['title']) and !empty($_POST['content'])) {
+    if(!empty($_POST['title']) and !empty($_POST['content']) and !empty($_GET['id'])) {
         $title=mysqli_real_escape_string($db, $_POST['title']);
         $content=mysqli_real_escape_string($db, $_POST['content']);
-        mysqli_query($db, "INSERT INTO entries (title, content, author) VALUES ('$title','$content','$_SESSION[id]');");
+        $id=mysqli_real_escape_string($db, $_GET['id']);
+        mysqli_query($db, "UPDATE entries SET title='$title', content=$content, author=$_SESSION[id] WHERE id=$id;");
         header("Location: .");
     } else if(isset($_GET['id'])){
         $id=mysqli_real_escape_string($db, $_GET['id']);
@@ -14,7 +15,7 @@ if(isset($_SESSION['perms']) and $_SESSION['perms'] > 0 and $_SESSION['perms'] !
         $title=$entry['title'];
         $content=$entry['content'];
         echo <<<FORM
-                <form action="edit.php" method="post">
+                <form action="edit.php?id=$_GET[id]" method="post">
                     <input type="text" name="title" placeholder="Überschrift" value='$title'></input><a href=".">Home</a><br>
                     <textarea id="editor" cols="65" rows="15" name="content">$content</textarea><br>
                     <input type="submit" value="Posten" id="submit">
