@@ -6,7 +6,7 @@ if(isset($_SESSION['perms']) and $_SESSION['perms'] > 0 and $_SESSION['perms'] !
         $title=mysqli_real_escape_string($db, $_POST['title']);
         $content=mysqli_real_escape_string($db, $_POST['content']);
         $id=mysqli_real_escape_string($db, $_GET['id']);
-        mysqli_query($db, "UPDATE entries SET title='$title', content=$content, author=$_SESSION[id] WHERE id=$id;");
+        mysqli_query($db, "UPDATE entries SET title='$title', content='$content', author=$_SESSION[id] WHERE id=$id;");
         header("Location: .");
     } else if(isset($_GET['id'])){
         $id=mysqli_real_escape_string($db, $_GET['id']);
