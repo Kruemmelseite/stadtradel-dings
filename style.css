@@ -22,6 +22,11 @@ body {
     /*text-align: left;*/
 }
 
+#editor {
+    height: 89.1%;
+}
+
+
 #content {
     width: 60%;
     background-color: white;
