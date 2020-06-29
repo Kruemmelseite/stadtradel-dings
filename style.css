@@ -1,5 +1,5 @@
 html {
-    background-color: darkgray;
+   background: linear-gradient(to right, #0aed2b, white, white, white, white, #0aed2b);
 }
 body {
     margin: 0px
@@ -8,18 +8,24 @@ body {
 #title {
     width: 80%;
     height: 20%;
-    background-color: lightgrey;
-    text-align: center;
-    font-size: 17.5vh;
+    background-color: #03A9F4;
+    text-align: right;
+    font-size: 15vh;
+	color: black;
 }
 
 #login {
     float: right;
-    background-color: lightgray;
+    background-color: #03A9F4;
     width: 20%;
     height: 20%;
     /*text-align: left;*/
 }
+
+#editor {
+    height: 89.1%;
+}
+
 
 #content {
     width: 60%;

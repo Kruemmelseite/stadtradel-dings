@@ -1,7 +1,6 @@
 <?php
 require_once("/etc/mysql_zugriff/zugriff.inc.php");
 
-echo "Anzahl der Einträge: ".mysqli_num_rows(mysqli_query($db, "SELECT * FROM entries"));
 $entries=mysqli_query($db, "SELECT * FROM entries ORDER BY id DESC");
 
 while($row = mysqli_fetch_array($entries)){
@@ -24,4 +23,3 @@ Write others
 edit members
 upload files
 */
-?>

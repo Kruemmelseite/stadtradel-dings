@@ -9,7 +9,7 @@ if(isset($_POST["user"]) and isset($_POST["pwd"])){
     $entries=mysqli_query($db, "SELECT * FROM users WHERE username='".$user."';");
     $entry=mysqli_fetch_assoc($entries);
     if(empty($entry)) {
-        echo "No user named ".$_POST['user']."!";;
+        echo "Kein wahrer Nutzername benannt! Bitte nennen sie einen Namen! ".$_POST['user']."!";;
         include("loginform.php");
         die();
     }
@@ -20,7 +20,7 @@ if(isset($_POST["user"]) and isset($_POST["pwd"])){
         $_SESSION['perms']=$entry['perms'];
         header("Location: .");
     } else {
-        echo "<script>\nalert('Wrong password');\nwindow.location.replace('index.php');\n</script>";
+        echo "<script>\nalert('Falsches Passwort!');\nwindow.location.replace('index.php');\n</script>";
     }
 
 } else {
