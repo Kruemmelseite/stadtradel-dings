@@ -1,6 +1,7 @@
 <?php
 require_once("/etc/mysql_zugriff/zugriff.inc.php");
 session_start();
+echo '<link rel="stylesheet" type="text/css" href="style.css">';
 if(isset($_SESSION['perms']) and $_SESSION['perms'] && 1) {
     if(!empty($_POST['title']) and !empty($_POST['content']) and !empty($_GET['id'])) {
         $title=mysqli_real_escape_string($db, $_POST['title']);
@@ -24,7 +25,6 @@ if(isset($_SESSION['perms']) and $_SESSION['perms'] && 1) {
         </div>
         <script src="../ckeditor/ckeditor.js"></script>
         <script>
-            CKEDITOR.config.width='60%';
             CKEDITOR.config.height='70%';
             CKEDITOR.replace('editor');
         </script>
