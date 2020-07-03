@@ -1,21 +1,21 @@
 
 <?php
 session_start();
-if($_SESSION["perms"] & 8) {
-if(isset($_GET["id"])){
-	if(intval($_GET["id"])){
-		try {
-			$remoteImage = "/var/www/pictures/".$_GET["id"];
-		} catch (Exception $e) {
-			die("A picture with this ID doesn't exist");
-		}
-	} else {
-		die("A picture with this ID doesn't exist");
-	}
-	$imginfo = getimagesize($remoteImage);
-	header("Content-type: {$imginfo['mime']}");
-    readfile($remoteImage);
-} else {?>
+if ($_SESSION["perms"] & 8) {
+    if (isset($_GET["id"])) {
+        if (intval($_GET["id"])) {
+            try {
+                $remoteImage = "/var/www/pictures/" . $_GET["id"];
+            } catch (Exception $e) {
+                die("A picture with this ID doesn't exist");
+            }
+        } else {
+            die("A picture with this ID doesn't exist");
+        }
+        $imginfo = getimagesize($remoteImage);
+        header("Content-type: {$imginfo['mime']}");
+        readfile($remoteImage);
+    } else {?>
 <title></title>
 <style type="text/css">
 	body {
@@ -33,11 +33,11 @@ if(isset($_GET["id"])){
 </style>
 <div id="wrapper">
 	<div align=right>
-		<?php include("../login.php");?>
+		<?php include "../login.php";?>
 	</div>
 </div>
 
 <?php
-	}
+}
 }
 ?>

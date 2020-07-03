@@ -1,20 +1,20 @@
 <?php
-require_once("/etc/mysql_zugriff/zugriff.inc.php");
+require_once "/etc/mysql_zugriff/zugriff.inc.php";
 session_start();
 echo '<link rel="stylesheet" type="text/css" href="style.css">';
-if(isset($_SESSION['perms']) and ($_SESSION['perms'] & 1 and mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM entries WHERE id=".mysqli_real_escape_string($db, $_GET["id"])))["author"]==$_SESSION["id"]) or $_SESSION["perms"] & 2) {
-    if(!empty($_POST['title']) and !empty($_POST['content']) and !empty($_GET['id'])) {
-        $title=mysqli_real_escape_string($db, $_POST['title']);
-        $content=mysqli_real_escape_string($db, $_POST['content']);
-        $id=mysqli_real_escape_string($db, $_GET['id']);
+if (isset($_SESSION['perms']) and ($_SESSION['perms'] & 1 and mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM entries WHERE id=" . mysqli_real_escape_string($db, $_GET["id"])))["author"] == $_SESSION["id"]) or $_SESSION["perms"] & 2) {
+    if (!empty($_POST['title']) and !empty($_POST['content']) and !empty($_GET['id'])) {
+        $title = mysqli_real_escape_string($db, $_POST['title']);
+        $content = mysqli_real_escape_string($db, $_POST['content']);
+        $id = mysqli_real_escape_string($db, $_GET['id']);
         mysqli_query($db, "UPDATE entries SET title='$title', content='$content', author=$_SESSION[id] WHERE id=$id;");
         header("Location: .");
-    } else if(isset($_GET['id'])){
-        $id=mysqli_real_escape_string($db, $_GET['id']);
-        $entries=mysqli_query($db, "SELECT * FROM entries WHERE id=$id");
-        $entry=mysqli_fetch_assoc($entries);
-        $title=$entry['title'];
-        $content=$entry['content'];
+    } else if (isset($_GET['id'])) {
+        $id = mysqli_real_escape_string($db, $_GET['id']);
+        $entries = mysqli_query($db, "SELECT * FROM entries WHERE id=$id");
+        $entry = mysqli_fetch_assoc($entries);
+        $title = $entry['title'];
+        $content = $entry['content'];
         echo <<<FORM
         <div id="content">
             <form action="edit.php?id=$_GET[id]" method="post">
@@ -31,4 +31,3 @@ if(isset($_SESSION['perms']) and ($_SESSION['perms'] & 1 and mysqli_fetch_assoc(
     FORM;
     }
 }
-?>
