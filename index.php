@@ -1,4 +1,8 @@
-<?php session_start()?>
+<?php session_start();
+if( $_SERVER['REQUEST_URI']=="/index.php"){
+    header("Location: .");
+}
+?>
 
 <html>
     <head>

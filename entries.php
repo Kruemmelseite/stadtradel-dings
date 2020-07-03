@@ -8,7 +8,7 @@ while($row = mysqli_fetch_array($entries)){
     if(isset($_SESSION['perms']) and $_SESSION['perms'] & 2){
         $delete =  "<a href='delete.php?id=".$row["id"]."'> Delete</a>";
         $edit=" <a href='edit.php?id=$row[id]'>Edit</a>";
-    } else if(isset($_SESSION['perms']) and $_SESSION['perms'] & 1) {
+    } else if(isset($_SESSION['perms']) and $_SESSION['perms'] & 1 and $row["author"]==$_SESSION["id"]) {
         $delete =  "<a href='delete.php?id=".$row["id"]."'> Delete</a>";
         $edit=" <a href='edit.php?id=$row[id]'>Edit</a>";
     } else {

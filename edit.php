@@ -2,7 +2,7 @@
 require_once("/etc/mysql_zugriff/zugriff.inc.php");
 session_start();
 echo '<link rel="stylesheet" type="text/css" href="style.css">';
-if(isset($_SESSION['perms']) and $_SESSION['perms'] && 1) {
+if(isset($_SESSION['perms']) and ($_SESSION['perms'] & 1 and mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM entries WHERE id=".mysqli_real_escape_string($db, $_GET["id"])))["author"]==$_SESSION["id"]) or $_SESSION["perms"] & 2) {
     if(!empty($_POST['title']) and !empty($_POST['content']) and !empty($_GET['id'])) {
         $title=mysqli_real_escape_string($db, $_POST['title']);
         $content=mysqli_real_escape_string($db, $_POST['content']);
