@@ -1,5 +1,5 @@
 <?php
-require '../edit/zugriff.inc.php';
+require_once("/etc/mysql_zugriff/zugriff.inc.php");
 if (basename(__FILE__) === basename($_SERVER['SCRIPT_FILENAME'])) {
     session_start();
 }
@@ -10,3 +10,4 @@ if (isset($_SESSION['login']) and $_SESSION['login'] === true and isset($_SESSIO
     }
 }
 header("Location: .");
+?>
