@@ -24,10 +24,10 @@ if ($_SERVER['REQUEST_URI'] == "/index.php") {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
         <link rel="manifest" href="/manifest.json">
         <!---->
-        <title>Stadtradeln Würzburg</title>
+        <title>Stadtradeln DHG</title>
     </head>
     <body class="container">
-        <div id="title">Stadtradeln Würzburg</div>
+        <div id="title">Stadtradeln DHG</div>
         <div id="login"><?php include "loginform.php"?></div>
         <div id="content"><?php include "entries.php"?></div>
     </body>
