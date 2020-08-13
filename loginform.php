@@ -9,7 +9,7 @@
 <?php if ($_SESSION['perms'] != 0) {?>
 <button id="li_button" onclick="window.location.replace('new_entry.php')">Neuer Eintrag</button>
 <?php
-if ($_SESSION['perms'] > 2 and $_SESSION['perms'] != 4) {?><button id="li_button" onclick="window.location.replace('backend')">The backend</button>
+if ($_SESSION['perms'] > 2 and $_SESSION['perms'] != 4) {?><button id="li_button" onclick="window.location.replace('/backend/')">The backend</button>
 <?php
 }}}
 ?>
