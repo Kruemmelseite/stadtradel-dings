@@ -1,4 +1,7 @@
-<?php if (!isset($_SESSION['login']) or $_SESSION['login'] === false) {?>
+<?php
+session_start();
+if (!isset($_SESSION['login']) or $_SESSION['login'] === false) {
+?>
 <form action="login.php" method="post" id="loginform">
 <input type="text" name="user" placeholder="Benutzername"><br>
 <input type="password" name="pwd" placeholder="Passwort" autocomplete="off"><br>

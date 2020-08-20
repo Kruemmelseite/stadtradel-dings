@@ -18,11 +18,10 @@ while ($row = mysqli_fetch_array($entries)) {
     if($row["published"]) {
         echo "<div style='border: 1px solid;padding:1%;margin:0.5%'><h3>$row[title]</h3>\n<p>$content</p><div><small>eingetragen <strong>$row[upload_time]</strong></small>$edit $delete</div></div><br>\n";
     } else {
-        if($_SESSION['perms'] & 8) {
-            echo "<div style='border: 1px solid grey;padding:1%;margin:0.5%color:grey;'><h3>$row[title]</h3>\n<p>$content</p><div><small>eingetragen <strong>$row[upload_time]</strong></small>$edit $delete</div></div><br>\n";
+        if(isset($_SESSION['perms']) and $_SESSION['perms'] & 8) {
+            echo "<div style='border: 1px solid grey;padding:1%;margin:0.5%;color:grey;'><h3>$row[title]</h3>\n<p>$content</p><div><small>eingetragen <strong>$row[upload_time]</strong></small>$edit $delete</div></div><br>\n";
         }
     }
-    //$i++;
 } /*
 1 Write
 2 Write others
