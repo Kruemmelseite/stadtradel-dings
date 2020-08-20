@@ -5,7 +5,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 }
 require_once "/etc/mysql_zugriff/zugriff.inc.php";
 if (isset($_SESSION['perms']) and $_SESSION['perms'] & 4) {
-    if (empty($_POST['user']) or empty($_POST['pwd1']) or empty($_POST['pwd2']) or !isset($_POST['perms'])) {
+    if (empty($_POST['user']) or empty($_POST['pwd1']) or empty($_POST['pwd2']) or (!isset($_POST['perms1']) and !isset($_POST['perms2']) and !isset($_POST['perms3']) and !isset($_POST['perms4']))) {
         ?>
 <form action="register.php" method="post">
     Benutzername:<br>
