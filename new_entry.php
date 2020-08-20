@@ -6,12 +6,13 @@ if (isset($_SESSION['perms']) and $_SESSION['perms'] & 1) {
     if (!empty($_POST['title']) and !empty($_POST['content'])) {
         $title = mysqli_real_escape_string($db, $_POST['title']);
         $content = mysqli_real_escape_string($db, $_POST['content']);
-        mysqli_query($db, "INSERT INTO entries (title, content, author) VALUES ('$title','$content','$_SESSION[id]');");
+        $published = $_SESSION['perms'] & 8 ? true : false;
+        mysqli_query($db, "INSERT INTO entries (title, content, author, published) VALUES ('$title','$content','$_SESSION[id]', $published);");
         header("Location: .");
     } else {
         ?>
 <form id="content" action="new_entry.php" method="post">
-<input type="text" name="title" placeholder="Überschrift"> <a href="index.php">Home</a><br>
+<input type="text" name="title" placeholder="Überschrift"> <a href="index.php">Home</a><br>⁴
 <textarea id="editor" cols="65" rows="15" name="content"></textarea><br>
 <input type="submit" value="Posten" id="submit">
 </form>

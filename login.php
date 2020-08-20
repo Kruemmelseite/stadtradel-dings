@@ -1,4 +1,4 @@
-<title>Döner-Blog: Login</title>
+<title>Stadtradeln DHG: Login</title>
 <button onclick="window.location.replace('.')">Home</button>
 <?php
 require_once "/etc/mysql_zugriff/zugriff.inc.php";

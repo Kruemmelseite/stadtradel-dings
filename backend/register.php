@@ -22,7 +22,7 @@ if (isset($_SESSION['perms']) and $_SESSION['perms'] & 4) {
         <input type="checkbox" id="3" name="perms3" value="4">
         <label for="3">Benutzer verwalten</label>
         <input type="checkbox" id="4" name="perms4" value="8">
-        <label for="4">Bilder hochladen</label>
+        <label for="4">Veröffentlichen</label>
     <input type="submit" value="Hinzufügen"></input>
 </form>
 

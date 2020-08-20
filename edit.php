@@ -7,7 +7,8 @@ if (isset($_SESSION['perms']) and ($_SESSION['perms'] & 1 and mysqli_fetch_assoc
         $title = mysqli_real_escape_string($db, $_POST['title']);
         $content = mysqli_real_escape_string($db, $_POST['content']);
         $id = mysqli_real_escape_string($db, $_GET['id']);
-        mysqli_query($db, "UPDATE entries SET title='$title', content='$content', author=$_SESSION[id] WHERE id=$id;");
+        $published = $_SESSION['perms'] & 8 ? true : false;
+        mysqli_query($db, "UPDATE entries SET title='$title', content='$content', author=$_SESSION[id], published=$published WHERE id=$id;"); // TODO add column published
         header("Location: .");
     } else if (isset($_GET['id'])) {
         $id = mysqli_real_escape_string($db, $_GET['id']);

@@ -2,7 +2,7 @@
 require_once "/etc/mysql_zugriff/zugriff.inc.php";
 
 $entries = mysqli_query($db, "SELECT * FROM entries ORDER BY id DESC");
-
+session_start();
 while ($row = mysqli_fetch_array($entries)) {
     $content = nl2br($row["content"]);
     if (isset($_SESSION['perms']) and $_SESSION['perms'] & 2) {
@@ -15,11 +15,16 @@ while ($row = mysqli_fetch_array($entries)) {
         $delete = "";
         $edit = "";
     }
-    echo "<div style='border: 1px solid;padding:1%;margin:0.5%'><h3>$row[title]</h3>\n<p>$content</p><div><small>eingetragen <strong>$row[upload_time]</strong></small>$edit $delete</div></div><br>\n";
-    //$i++;
+    if($row["published"]) {
+        echo "<div style='border: 1px solid;padding:1%;margin:0.5%'><h3>$row[title]</h3>\n<p>$content</p><div><small>eingetragen <strong>$row[upload_time]</strong></small>$edit $delete</div></div><br>\n";
+    } else {
+        if(isset($_SESSION['perms']) and $_SESSION['perms'] & 8) {
+            echo "<div style='border: 1px solid grey;padding:1%;margin:0.5%;color:grey;'><h3>$row[title]</h3>\n<p>$content</p><div><small>eingetragen <strong>$row[upload_time]</strong></small>$edit $delete</div></div><br>\n";
+        }
+    }
 } /*
-Write
-Write others
-edit members
-upload files
+1 Write
+2 Write others
+4 edit members
+8 publish
  */
