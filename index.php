@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_URI'] == "/index.php") {
         <link rel="manifest" href="/manifest.json">
         <!---->
         <title>Stadtradeln DHG</title>
+        <script src="entries.js"></script>
     </head>
     <body class="container">
         <div id="title">Stadtradeln DHG</div>
