@@ -4,7 +4,7 @@ require_once "/etc/mysql_zugriff/zugriff.inc.php";
 $entries = mysqli_query($db, "SELECT * FROM entries ORDER BY id DESC");
 session_start();
 while ($row = mysqli_fetch_array($entries)) {
-    $id = $row["id"]
+    $id = $row["id"];
     $content = nl2br($row["content"]);
     if (isset($_SESSION['perms']) and $_SESSION['perms'] & 2) {
         $delete = "<a href='delete.php?id=" . $row["id"] . "'> Delete</a>";
