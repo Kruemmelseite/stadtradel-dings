@@ -3,7 +3,7 @@ var elements = {};
 function shorten(element) {
     if (element.innerHTML.length < 100) return
     elements[element.id] = element.innerHTML;
-    lement.innerHTML = element.innerHTML.substr(0, 100)+"<p onclick='open_id(\"" + element.id + "\")'  style='color: blue;'>more</p>";
+    element.innerHTML = element.innerHTML.substr(0, 100)+"<p onclick='open_id(\"" + element.id + "\")'  style='color: blue;'>more</p>";
 }
  
 function shorten_id(id) {
