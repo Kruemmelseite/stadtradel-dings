@@ -2,16 +2,22 @@ var elements = {};
 
 function shorten(element) {
     if (element.innerHTML.length < 100) return
-    elements.push({key:element.id, value:element.innerHTML});
-    element.innerHTML = element.innerHTML.substr(0, 100)+" <p onclick='open("+element.id+")' style='color: blue;'>more</p>";
+    elements[element.id] = element.innerHTML;
+    lement.innerHTML = element.innerHTML.substr(0, 100)+"<p onclick='open_id(\"" + element.id + "\")'  style='color: blue;'>more</p>";
 }
-
-function open(id) {
+ 
+function shorten_id(id) {
     let element = document.getElementById(id);
-    window.open("about:blank", "Long content", "scrollbars:no").document.write(elements[id]);
+    if (element.innerHTML.length < 100) return
+    element.innerHTML = element.innerHTML.substr(0, 100)+"<p onclick='open_id(\"" + element.id + "\")'  style='color: blue;'>more</p>";
+}
+ 
+function open_id(id) {   
+    let element = document.getElementById(id);
+    element.innerHTML = elements[id] + "<p onclick='shorten_id(\""+id+"\")' style='color: blue;'>close</p>" ;
 }
 
-
+ 
 for (let element of document.getElementsByClassName('content_block')) {
     shorten(element);
 }
