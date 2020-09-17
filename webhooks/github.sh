@@ -1,3 +1,3 @@
 cd /var/www/stadtradel-dings
 git pull
-chmod +x ./webhooks/github.hs
+chmod +x ./webhooks/github.sh
