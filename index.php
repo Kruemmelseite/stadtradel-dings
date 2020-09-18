@@ -25,7 +25,6 @@ if ($_SERVER['REQUEST_URI'] == "/index.php") {
         <link rel="manifest" href="/manifest.json">
         <!---->
         <title>Stadtradeln DHG</title>
-        <script src="entries.js"></script>
     </head>
     <body class="container">
         <div id="title">Stadtradeln DHG</div>
@@ -35,4 +34,5 @@ if ($_SERVER['REQUEST_URI'] == "/index.php") {
 	<img src="https://www.abuseipdb.com/contributor/44607.svg" style="width: 200px;box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, .2);">
 </a>
     </body>
+    <script src="entries.js"></script>
 </html>
